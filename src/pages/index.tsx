@@ -16,6 +16,9 @@ import {
 import { BorderBeam } from "@/components/magicui/border-beam";
 import { SparklesText } from "@/components/magicui/sparkles-text";
 import Link from "next/link";
+import { ShimmerButton } from "@/components/magicui/shimmer-button";
+import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
+import { TextAnimate } from "@/components/magicui/text-animate";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,8 +31,6 @@ const geistMono = Geist_Mono({
 });
 
 export default function IdulFitriCard() {
-  const [isOpened, setIsOpened] = useState(false);
-  const [isAnimating, setIsAnimating] = useState(false);
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
   const [second, setSecond] = useState(0);
@@ -53,16 +54,6 @@ export default function IdulFitriCard() {
       return () => clearInterval(interval);
     }
   }, [isIdulFitri]);
-
-  const handleCardClick = () => {
-    if (!isAnimating) {
-      setIsAnimating(true);
-      setTimeout(() => {
-        setIsOpened(true);
-        setIsAnimating(false);
-      }, 1200); // Waktu sesuai durasi animasi
-    }
-  };
 
   return (
     <AuroraBackground>
@@ -93,11 +84,17 @@ export default function IdulFitriCard() {
                 </div>
               </div>
             </div>
-            {/* <Card className="p-0 w-[80px] h-[80px] border shadow-none rounded-none bg-[#EEE7DB] shadow-[inset_0_-2px_4px_rgba(0,0,0,0.6)]">
-              <CardHeader className="bg-red-400 rounded-t m-0">jam</CardHeader>
-              <CardContent className="pt-0">01</CardContent>
-            </Card>
-            <h1 className="font-black text-6xl text-center">{timeLeft}</h1> */}
+            {isIdulFitri ? (
+              <ShimmerButton className="font-bold">Buka</ShimmerButton>
+            ) : (
+              <div className="bg-gradient-to-bl from-[#0D7124] text-white to-[#F3C203]/50 p-3 rounded-xl shadow-md">
+                <p className="text-center text-xs">
+                  Timer Lebaran udah mulai jalan nih! Dag dig dug ga sabar ya?
+                  Tenang aja, hadiah spesialnya bakal bikin kamu shock saking
+                  kerennya. Tunggu aja ya, ga bakal nyesel deh!
+                </p>
+              </div>
+            )}
             <CardFooter className="flex justify-center">
               <div className="text-xs text-gray-400">
                 &copy; 2025 Created by{" "}
@@ -111,7 +108,7 @@ export default function IdulFitriCard() {
             </CardFooter>
             <BorderBeam
               duration={8}
-              size={100}
+              size={40}
               colorFrom="#0D7124"
               colorTo="#F3C203"
             />
