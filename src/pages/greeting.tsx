@@ -42,7 +42,7 @@ const GreatingPage = () => {
                 Selamat berlebaran dan jangan lupa bagi-bagi THR, hehe.
               </TextAnimate>
             </div>
-            <ShinyButton>test</ShinyButton>
+            <ShimmerButton className="bg-white">Tinggalkan Pesan</ShimmerButton>
             <ShimmerButton>test</ShimmerButton>
             <CardFooter className="flex justify-center">
               <div className="text-xs text-gray-400">

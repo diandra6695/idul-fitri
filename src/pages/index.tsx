@@ -19,6 +19,7 @@ import Link from "next/link";
 import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { TextAnimate } from "@/components/magicui/text-animate";
+import { HeadMetaData } from "@/components/layouts/head-meta-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -57,6 +58,7 @@ export default function IdulFitriCard() {
 
   return (
     <AuroraBackground>
+      <HeadMetaData />
       <div className="flex justify-center items-center min-h-screen">
         <BlurFade inView>
           <Card className="w-[320px] px-5 backdrop-blur-2xl bg-white/50 rounded-xl shadow-lg">
