@@ -12,7 +12,7 @@ export const HeadMetaData: React.FC<{
   // ogImageUrl = env.NEXT_PUBLIC_OG_IMAGE_URL,
   pathname = "",
 }) => {
-  const defaultTitle = "Samar";
+  const defaultTitle = "Hexcon";
 
   const baseUrl = "https://danyap.vercel.app";
 
