@@ -7,8 +7,10 @@ import { TextAnimate } from "@/components/magicui/text-animate";
 import { AuroraBackground } from "@/components/ui/aurora-background";
 import { Card, CardFooter } from "@/components/ui/card";
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const GreatingPage = () => {
+  const router = useRouter();
   return (
     <AuroraBackground>
       <div className="flex justify-center items-center min-h-screen">
@@ -42,13 +44,17 @@ const GreatingPage = () => {
                 Selamat berlebaran dan jangan lupa bagi-bagi THR, hehe.
               </TextAnimate>
             </div>
-            <ShimmerButton className="bg-white">Tinggalkan Pesan</ShimmerButton>
-            <ShimmerButton>test</ShimmerButton>
+            <ShimmerButton
+              onClick={() => router.replace("/game")}
+              className="font-semibold"
+            >
+              Ambil Hadiah
+            </ShimmerButton>
             <CardFooter className="flex justify-center">
               <div className="text-xs text-gray-400">
                 &copy; 2025 Created by{" "}
                 <Link
-                  className="underline font-semibold"
+                  className="underline font-semibold text-gray-800"
                   href={"https://hexcon.vercel.app"}
                 >
                   hexcon

@@ -20,6 +20,7 @@ import { ShimmerButton } from "@/components/magicui/shimmer-button";
 import { AnimatedShinyText } from "@/components/magicui/animated-shiny-text";
 import { TextAnimate } from "@/components/magicui/text-animate";
 import { HeadMetaData } from "@/components/layouts/head-meta-data";
+import { useRouter } from "next/router";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,6 +40,7 @@ export default function IdulFitriCard() {
   const idulFitriDate = dayjs("2025-03-31"); // Sesuaikan tanggal Idulfitri
   const now = dayjs();
   const isIdulFitri = now.isAfter(idulFitriDate);
+  const router = useRouter();
 
   useEffect(() => {
     if (!isIdulFitri) {
@@ -69,25 +71,36 @@ export default function IdulFitriCard() {
             <div className={`${geistSans.className} flex justify-center gap-4`}>
               <div className="w-20 h-20 bg-white flex justify-center items-center shadow-md rounded-xl">
                 <div className="text-center">
-                  <h1 className="font-extrabold text-3xl">{hour}</h1>
+                  <h1 className="font-extrabold text-3xl">
+                    {hour < 0 ? "00" : hour}
+                  </h1>
                   <p className="text-sm text-center">Jam</p>
                 </div>
               </div>
               <div className="w-20 h-20 bg-white flex justify-center items-center shadow-md rounded-xl">
                 <div className="text-center">
-                  <h1 className="font-extrabold text-3xl">{minute}</h1>
+                  <h1 className="font-extrabold text-3xl">
+                    {minute < 0 ? "00" : minute}
+                  </h1>
                   <p className="text-sm text-center">Menit</p>
                 </div>
               </div>
               <div className="w-20 h-20 bg-white flex justify-center items-center shadow-md rounded-xl">
                 <div className="text-center">
-                  <h1 className="font-extrabold text-3xl">{second}</h1>
+                  <h1 className="font-extrabold text-3xl">
+                    {second < 0 ? "00" : second}
+                  </h1>
                   <p className="text-sm text-center">Detik</p>
                 </div>
               </div>
             </div>
             {isIdulFitri ? (
-              <ShimmerButton className="font-bold">Buka</ShimmerButton>
+              <ShimmerButton
+                onClick={() => router.replace("/greeting")}
+                className="font-bold"
+              >
+                Buka
+              </ShimmerButton>
             ) : (
               <div className="bg-gradient-to-bl from-[#0D7124] text-white to-[#F3C203]/50 p-3 rounded-xl shadow-md">
                 <p className="text-center text-xs">
@@ -101,7 +114,7 @@ export default function IdulFitriCard() {
               <div className="text-xs text-gray-400">
                 &copy; 2025 Created by{" "}
                 <Link
-                  className="underline font-semibold"
+                  className="underline font-semibold text-gray-800"
                   href={"https://hexcon.vercel.app"}
                 >
                   hexcon
